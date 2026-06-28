@@ -2,7 +2,7 @@
 title: FishAMR-Link Supreme
 emoji: 🐟
 colorFrom: blue
-colorTo: teal
+colorTo: indigo
 sdk: streamlit
 app_file: FishAMR_Link_v15_Supreme.py
 pinned: false

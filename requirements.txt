@@ -6,3 +6,4 @@ networkx
 biopython
 scikit-learn
 pyyaml
+plotly
