@@ -1,0 +1,8 @@
+streamlit>=1.30.0
+numpy
+pandas
+plotly
+networkx
+biopython
+scikit-learn
+pyyaml
