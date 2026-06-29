@@ -27,4 +27,6 @@ COPY . .
 # Expose the mandatory Hugging Face Space port
 EXPOSE 7860
 
-ENTRYPOINT ["streamlit", "run", "FishAMR_Link_v15_Supreme.py", "--server.port=7860", "--server.address=0.0.0.0"]
+# Use explicit path parameters and absolute execution definitions to prevent shell blocking
+ENTRYPOINT ["sh", "-c", "mkdir -p /app/amr_db && amrfinder_update -d /app/amr_db || true; streamlit run FishAMR_Link_v15_Supreme.py --server.port=7860 --server.address=0.0.0.0"]
+
