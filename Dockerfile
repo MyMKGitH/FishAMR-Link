@@ -1,13 +1,21 @@
 FROM python:3.11-slim-bookworm
 
-# Clean update and package installation with your complete bio-tool suite
+# Install standard dependencies, curl/wget, and compilation utilities
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     ncbi-blast+ \
-    ncbi-amrfinderplus \
     prodigal \
     git \
+    wget \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
+
+# Manually pull, extract, and deploy the authentic pre-compiled NCBI AMRFinderPlus Linux binary
+RUN wget https://github.com/ncbi/amr/releases/download/amrfinder_v3.12.8/amrfinder_binaries_v3.12.8.tar.gz \
+    && tar -xzf amrfinder_binaries_v3.12.8.tar.gz \
+    && mv amrfinder /usr/local/bin/amrfinder \
+    && mv amrfinder_update /usr/local/bin/amrfinder_update \
+    && rm amrfinder_binaries_v3.12.8.tar.gz
 
 WORKDIR /app
 
