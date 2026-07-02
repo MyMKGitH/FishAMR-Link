@@ -1,7 +1,7 @@
 """
 FishAMR-Link v16.0: Automated Inference of Plasmid-Mediated Antimicrobial
 Resistance Transmission in Aquatic Pathogens.
-Production-Grade Monolithic Core Interface & Advanced Scientific Analytics.
+Monolithic Core Interface & Advanced Scientific Analytics.
 """
 
 import os
