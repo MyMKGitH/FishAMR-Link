@@ -1,3 +1,14 @@
+---
+title: FishAMR-Link
+emoji: 🐟
+colorFrom: green
+colorTo: indigo
+sdk: streamlit
+app_file: FishAMR_Link_v16.py
+pinned: false
+license: mit
+---
+
 # FishAMR-Link v16.0 (Advanced Evolution Build)
 
 FishAMR-Link v16.0 is an advanced, publication-grade computational biology platform engineered to track, model, and analyze R-plasmid-mediated horizontal gene transfer (HGT) and antimicrobial resistance (AMR) profiles in major aquatic pathogens[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span). 
