@@ -1,15 +1,15 @@
 ---
-title: FishAMR-Link Supreme
+title: FishAMR-Link
 emoji: 🐟
 colorFrom: blue
 colorTo: indigo
 sdk: streamlit
-app_file: FishAMR_Link_v15_Supreme.py
+app_file: FishAMR_Link_v15.py
 pinned: false
 license: mit
 ---
 
-# FishAMR-Link (v15.0-SUPREME)
+# FishAMR-Link (v15.0)
 
 An advanced, single-module computational genomics platform engineered for the multi-dimensional tracking, functional annotation, and machine learning-driven risk stratification of epizootic plasmid vectors conveying Antimicrobial Resistance (AMR) across aquaculture ecosystems.
 
