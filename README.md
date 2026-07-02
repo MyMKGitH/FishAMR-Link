@@ -1,47 +1,28 @@
----
-title: FishAMR-Link Supreme
-emoji: 🐟
-colorFrom: blue
-colorTo: indigo
-sdk: streamlit
-app_file: FishAMR_Link_v15_Supreme.py
-pinned: false
-license: mit
----
+# FishAMR-Link v16.0 (Advanced Evolution Build)
 
-# FishAMR-Link (v15.0-SUPREME)
+FishAMR-Link v16.0 is an advanced, publication-grade computational biology platform engineered to track, model, and analyze R-plasmid-mediated horizontal gene transfer (HGT) and antimicrobial resistance (AMR) profiles in major aquatic pathogens[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span). 
 
-An advanced, single-module computational genomics platform engineered for the multi-dimensional tracking, functional annotation, and machine learning-driven risk stratification of epizootic plasmid vectors conveying Antimicrobial Resistance (AMR) across aquaculture ecosystems.
+This branch introduces rigorous epidemiological tracking constraints, production-grade data warehousing architectures, and cryptographic sequence sketching pipelines designed for high-consequence academic research[span_21](start_span)[span_21](end_span).
 
+## 🚀 Key Evolutionary Features (v16.0 Upgrades)
 
+*   **Translation Table 11 Enforcement:** Integrated Biopython sequence parsing layers that strictly adhere to the Bacterial, Archaeal, and Plant Plastid Code, ensuring highly accurate open reading frame (ORF) extractions[span_22](start_span)[span_22](end_span).
+*   **Heuristic Reservoir Similarity Scoring (HRSS):** Formulated an advanced transmission topology mapping framework that applies directional chronological arrows and genomic structural skews to trace ancestral AMR reservoirs[span_23](start_span)[span_23](end_span).
+*   **Deterministic Genomic Sketching:** Replaced volatile baseline session hashes with a robust `hashlib.blake2b` bottom-k MinHash sketch execution workflow to ensure reproducible Jaccard containment distances across analytical tracking sessions[span_24](start_span)[span_24](end_span).
+*   **Production Data Warehouse Layer:** Transitioned raw database connections to an asynchronous SQLAlchemy Object-Relational Mapping (ORM) setup managed by runtime Pydantic schema validation structures[span_25](start_span)[span_25](end_span)[span_26](start_span)[span_26](end_span).
+*   **Automated Provenance Export:** Equipped with an automated ReportLab document engine that builds formatted, data-dense PDF reports detailing calculations and structural transmission graphs[span_27](start_span)[span_27](end_span).
 
-## Architecture Overview
+## 🛠️ Technological Architecture
 
-FishAMR-Link coordinates data processing pipelines across three distinct analytical domains:
-1. **Dynamic Functional Annotation:** Orchestrates local multi-threaded subprocess layers executing `prodigal` and `ncbi-blast+` to perform direct structural feature predictions on raw genomic assemblies.
-2. **Network Topology Graphing:** Maps spatial and functional associations using proximity analysis to calculate genetic distances and clusters.
-3. **Machine Learning Risk Prediction:** Drives an optimized Random Forest classifier utilizing continuous probability arrays to compute precise risk stratification indices.
+*   **Bioinformatics Core:** Biopython, ncbi-amrfinderplus, BLAST+ CLI Wrappers[span_28](start_span)[span_28](end_span)[span_29](start_span)[span_29](end_span)[span_30](start_span)[span_30](end_span)
+*   **Data Science & Network Modeling:** NetworkX, Plotly, Scikit-learn, NumPy[span_31](start_span)[span_31](end_span)[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span)
+*   **Software Engineering & Storage:** SQLAlchemy ORM, Pydantic Settings, SQLite[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span)[span_36](start_span)[span_36](end_span)
+*   **Pipeline Orchestration & DevOps:** Docker Containerization, Nextflow DSL2[span_37](start_span)[span_37](end_span)[span_38](start_span)[span_38](end_span)
+*   **Reporting:** ReportLab PDF Generation Engine[span_39](start_span)[span_39](end_span)
 
-## Local Deployment Instructions
+## 💻 Local Installation & Setup
 
-### Prerequisites
-* Miniconda or Anaconda Distribution installed locally.
-* Visual Studio Code containing the Python extension pack.
-
-### Environment Setup & Installation
-Activate your existing environment inside your terminal and configure the package indexes:
-
-```bash
-# Activate your workspace
-conda activate bio-app
-
-# Append channels for genomic data handling
-conda config --add channels conda-forge
-conda config --add channels bioconda
-conda config --set channel_priority strict
-
-# Install command line utilities 
-conda install -y prodigal blast-plus
-
-# Install primary runtime application packages
-pip install -r requirements.txt
+1. **Isolate the Conda Environment:**
+   ```bash
+   conda create -n bio-app-v16 python=3.10 -y
+   conda activate bio-app-v16

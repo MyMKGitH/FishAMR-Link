@@ -6,4 +6,7 @@ networkx
 biopython
 scikit-learn
 pyyaml
-plotly
+sqlalchemy
+pydantic
+pydantic-settings
+reportlab
