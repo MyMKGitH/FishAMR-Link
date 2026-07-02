@@ -1,8 +1,8 @@
 """
-FishAMR-Link (v15.0-SUPREME) Bio-Intelligence Engine
+FishAMR-Link (v15.0)
 Poly-Functional Single-Module Architecture for Epizootic Plasmid Biothreat & Risk Stratification
-Author: Integrated Bio-Intelligence Framework (2026)
-Status: Absolute Production / Publication Quality - Fully Integrated & Built Out
+Author: MK (2026)
+Status: Prototype
 """
 
 import io
