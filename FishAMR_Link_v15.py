@@ -1,8 +1,8 @@
 """
-FishAMR-Link (v15.0-SUPREME) Bio-Intelligence Engine
+FishAMR-Link (v15.0)
 Poly-Functional Single-Module Architecture for Epizootic Plasmid Biothreat & Risk Stratification
-Author: Integrated Bio-Intelligence Framework (2026)
-Status: Absolute Production / Publication Quality - Fully Integrated & Built Out
+Author: MK (2026)
+Status: Prototype
 """
 
 import io
@@ -40,7 +40,7 @@ from sklearn.metrics import roc_curve, auc, precision_recall_curve, confusion_ma
 # =====================================================================
 
 st.set_page_config(
-    page_title="FishAMR-Link v15.0 - Supreme System",
+    page_title="FishAMR-Link v15.0",
     page_icon="🐟",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -254,7 +254,7 @@ def calculate_leave_one_out_metrics(X: np.ndarray, y: np.ndarray) -> Dict[str, A
 # 5. STREAMLIT INTERFACE LAYER
 # =====================================================================
 
-st.title("🐟 FishAMR-Link v15.0 - Supreme Platform")
+st.title("🐟 FishAMR-Link v15.0")
 st.markdown("##### High-Performance Integrated Production Framework for Epizootic Plasmid Stratification")
 
 t_ingest, t_warehouse, t_spatial, t_ml, t_devops = st.tabs([
@@ -531,7 +531,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 EXPOSE 8501
-ENTRYPOINT ["streamlit", "run", "FishAMR_Link_v15_Supreme.py", "--server.port=8501", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "FishAMR_Link_v15.py", "--server.port=8501", "--server.address=0.0.0.0"]
         """, language="dockerfile")
         
     with col_d2:
@@ -554,7 +554,7 @@ process RUN_SUPREME_BIO_INTELLIGENCE {
 
     script:
     \"\"\"
-    python3 FishAMR_Link_v15_Supreme.py --cli --input ${fasta} --output ${fasta.baseName}_provenance_manifest.json
+    python3 FishAMR_Link_v15.py --cli --input ${fasta} --output ${fasta.baseName}_provenance_manifest.json
     \"\"\"
 }
 
