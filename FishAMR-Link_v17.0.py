@@ -32,6 +32,8 @@ import networkx as nx
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
+from Bio.Blast import NCBIWWW
+from Bio.Blast import NCBIXML
 
 # SQLAlchemy ORM Data Warehouse Ingestion Layer
 from sqlalchemy import create_engine, Column, Integer, String, Float, Text, DateTime, ForeignKey
@@ -201,7 +203,6 @@ class DatabaseWarehouse:
             ]
             
             for data in baselines:
-                # Upgraded Pseudo-Random Matrix matching targets exactly to give MinHash dynamic substrate
                 gc_fraction = data["gc"] / 100.0
                 at_fraction = 1.0 - gc_fraction
                 pattern_chunk = "G" * int(500 * gc_fraction) + "C" * int(500 * gc_fraction) + "A" * int(500 * at_fraction) + "T" * int(500 * at_fraction)
@@ -220,7 +221,6 @@ class DatabaseWarehouse:
                 iso.sequences.append(seq_obj)
                 session.add(iso)
                 
-                # Alternate Sequence Variant Generation
                 simulated_genome_v = (pattern_chunk[::-1] * (data["len"] // len(pattern_chunk) + 1))[:int(data["len"] * 1.05)]
                 iso_v = Isolate(
                     accession=data["accession"] + "_v", organism=data["organism"], host_species=data["host_species"],
@@ -496,13 +496,11 @@ class AnalyticalTransmissionNetwork:
                 if meta_a["year"] > meta_b["year"]:
                     continue
                 
-                # Dynamic calculation matching sketch similarities
                 jaccard_sim = SequenceAnalyticsEngine.calculate_jaccard_containment(meta_a["sketch"], meta_b["sketch"])
                 gc_diff = abs(meta_a["gc"] - meta_b["gc"])
                 gc_similarity = max(0.0, 1.0 - (gc_diff / 100.0))
                 geo_weight = 1.0 if meta_a["country"] == meta_b["country"] else 0.4
                 
-                # Balanced Equation: 40% K-mer MinHash Jaccard, 40% GC profile, 20% spatial locale
                 hrss_score = (jaccard_sim * 0.4) + (gc_similarity * 0.4) + (geo_weight * 0.2)
                 
                 if hrss_score > 0.60:
@@ -595,8 +593,32 @@ class ProvenanceReportGenerator:
         return buffer.getvalue()
 
 # ----------------------------------------------------------------------
-# 9. INTEGRATED STREAMLIT ENTERPRISE WEB INTERFACE
+# 9. INTEGRATED STREAMLIT ENTERPRISE WEB INTERFACE & REMOTE ENGINES
 # ----------------------------------------------------------------------
+def run_remote_blast(fasta_sequence: str) -> Optional[List[Dict[str, Any]]]:
+    """
+    Executes a live, remote BLASTn search against the NCBI nucleotide database.
+    Perfect for cloud spaces (Hugging Face) without local BLAST+ binaries.
+    """
+    try:
+        with st.spinner("Querying NCBI BLAST Servers (this may take a moment)..."):
+            result_handle = NCBIWWW.qblast("blastn", "nt", fasta_sequence)
+            blast_record = NCBIXML.read(result_handle)
+            result_handle.close()
+            
+        alignments = []
+        for alignment in blast_record.alignments[:5]:  # Cap at top 5 hits
+            for hsp in alignment.hsps:
+                alignments.append({
+                    "title": alignment.title,
+                    "e_value": hsp.expect,
+                    "identity": (hsp.identities / hsp.align_length) * 100
+                })
+        return alignments
+    except Exception as e:
+        st.warning(f"NCBI Remote BLAST unavailable: {e}")
+        return None
+
 def run_web_dashboard_app():
     st.set_page_config(page_title="FishAMR-Link v17.0", layout="wide", page_icon="🧬")
     
@@ -687,8 +709,22 @@ def run_web_dashboard_app():
                             logger.error(f"Error handling native execution subprocess parsing: {e}")
                     
                     if not native_tool_executed:
-                        st.sidebar.warning("⚠️ AMRFinderPlus tool unavailable. Activating internal heuristic motif scanner pipeline.")
-                        amr_matches = SequenceAnalyticsEngine.deterministic_fallback_amr_scanner(seq_body)
+                        st.sidebar.warning("⚠️ AMRFinderPlus unavailable. Querying remote NCBI BLAST servers...")
+                        blast_results = run_remote_blast(seq_body)
+                        
+                        if blast_results:
+                            for hit in blast_results:
+                                amr_matches.append({
+                                    "gene": hit["title"].split("|")[-1].strip()[:15],
+                                    "class": "Homology Match",
+                                    "mechanism": f"Identified via remote blastn (E-value: {hit['e_value']})",
+                                    "feature_type": "AMR_Gene",
+                                    "confidence": float(np.round(hit["identity"] / 100, 2))
+                                })
+                            st.sidebar.success("✅ Remote BLAST alignment complete.")
+                        else:
+                            st.sidebar.error("NCBI servers unresponsive or no hits. Activating local heuristic motif scanner.")
+                            amr_matches = SequenceAnalyticsEngine.deterministic_fallback_amr_scanner(seq_body)
                     else:
                         st.sidebar.success("✅ Successfully extracted structural profiles using native AMRFinderPlus backend data engine.")
                     
