@@ -14,7 +14,7 @@ license: mit
 
 **Automated Inference of Plasmid-Mediated Antimicrobial Resistance Transmission in Aquatic Pathogens**
 
-FishAMR-Link v17.0 is an enterprise-grade, multidisciplinary structural bioinformatics pipeline designed to detect, track, and model plasmid-mediated antimicrobial resistance (AMR), mobile genetic elements (MGEs), and virulence factors across epizootic aquaculture reservoirs. 
+FishAMR-Link v17.0 is a multidisciplinary structural bioinformatics pipeline designed to detect, track, and model plasmid-mediated antimicrobial resistance (AMR), mobile genetic elements (MGEs), and virulence factors across epizootic aquaculture reservoirs. 
 
 The application integrates deterministic biophysical sequence modeling with an explainable ensemble machine learning classifier, backed by an advanced Heuristic Reservoir Similarity Scoring (HRSS) topology map to infer horizontal gene transfer (HGT) pathways among aquatic pathogens.
 
