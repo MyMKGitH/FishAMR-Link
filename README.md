@@ -47,3 +47,6 @@ The application integrates deterministic biophysical sequence modeling with an e
    git clone [https://github.com/your-username/FishAMR-Link.git](https://github.com/your-username/FishAMR-Link.git)
    cd FishAMR-Link
    pip install -r requirements.txt
+
+   .. image:: https://zenodo.org/badge/1283410991.svg
+  :target: https://doi.org/10.5281/zenodo.21441779
