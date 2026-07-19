@@ -48,5 +48,4 @@ The application integrates deterministic biophysical sequence modeling with an e
    cd FishAMR-Link
    pip install -r requirements.txt
 
-   .. image:: https://zenodo.org/badge/1283410991.svg
-  :target: https://doi.org/10.5281/zenodo.21441779
+[![DOI](https://zenodo.org/badge/1283410991.svg)](https://doi.org/10.5281/zenodo.21441779)
