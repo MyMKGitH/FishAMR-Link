@@ -49,3 +49,4 @@ The application integrates deterministic biophysical sequence modeling with an e
    pip install -r requirements.txt
 
 [![DOI](https://zenodo.org/badge/1283410991.svg)](https://doi.org/10.5281/zenodo.21441779)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-FishAMR--Link-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://mymkhf-fishamr-link.hf.space)
